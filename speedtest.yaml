@@ -1,0 +1,26 @@
+type: custom:vertical-stack-in-card
+cards:
+  - type: custom:mini-graph-card
+    name: Network SpeedTest
+    icon: mdi:server
+    show:
+      extrema: true
+    entities:
+      - entity: sensor.speedtest_download
+        name: Download
+        color: orange
+      - entity: sensor.speedtest_upload
+        name: Upload
+    align_icon: left
+    align_state: center
+    hours_to_show: 6
+    points_per_hour: 6
+  - type: custom:mini-graph-card
+    name: Ping
+    entities:
+      - entity: sensor.speedtest_ping
+        color: green
+    align_icon: left
+    align_state: center
+    hours_to_show: 6
+    points_per_hour: 6

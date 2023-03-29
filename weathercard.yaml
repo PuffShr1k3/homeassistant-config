@@ -1,0 +1,13 @@
+type: custom:vertical-stack-in-card
+cards:
+  - type: weather-forecast
+    entity: weather.zinfandel
+  - type: custom:hourly-weather
+    entity: weather.openweathermap
+    show_precipitation_amounts: true
+    show_wind: barb
+    icons: true
+    show_precipitation_probability: true
+    name: null
+  - type: custom:sun-card
+    darkMode: 1

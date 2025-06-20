@@ -1,0 +1,82 @@
+type: custom:bubble-card
+card_type: button
+entity: light.living_room_lights
+name: Living Room
+icon: ""
+show_last_changed: false
+show_attribute: false
+sub_button:
+  - entity: light.living_room_lamp
+    name: Lamp
+    show_background: true
+    tap_action:
+      action: more-info
+    double_tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+  - entity: fan.xiaomi_smart_standing_fan_2_pro
+    icon: ""
+    tap_action:
+      action: navigate
+      navigation_path: "#xiaomifan"
+    hold_action:
+      action: navigate
+      navigation_path: "#xiaomifan"
+    name: Fan
+    double_tap_action:
+      action: toggle
+  - entity: sensor.zinfandel_nuc_status
+    icon: mdi:debian
+    tap_action:
+      action: navigate
+      navigation_path: "#nucbox"
+    name: Nucbox
+  - entity: sensor.plantshelftemphumidity_temperature
+    show_icon: false
+    show_state: true
+    show_background: false
+    name: Temp
+force_icon: false
+scrolling_effect: true
+show_icon: true
+show_state: false
+card_layout: large
+styles: |-
+  .bubble-sub-button {
+      height: 38px !important;
+      min-width: 38px !important;
+  }
+    .bubble-sub-button-2 > ha-icon {
+      animation: ${hass.states['fan.xiaomi_smart_standing_fan_2_pro'].state === 'on' ? 'slow-rotate 2s linear infinite' : ''};
+    }
+    @keyframes slow-rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  .bubble-range-fill {
+      background: linear-gradient(
+        to right,
+        ${(() => {
+          const group = hass.states['light.living_room_lights'].attributes.entity_id;
+          return group
+            .map(light => `rgb(${hass.states[light].attributes.rgb_color})`)
+            .join(',')
+        })()}
+      ) !important;
+      opacity: 1 !important;
+    }
+tap_action:
+  action: navigate
+  navigation_path: "#livingroom"
+button_action:
+  tap_action:
+    action: navigate
+    navigation_path: "#livingroom"
+  hold_action:
+    navigation_path: "#livingroom"
+    action: navigate
+show_name: true
+hold_action:
+  action: navigate
+  navigation_path: "#livingroom"
